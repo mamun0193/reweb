@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import puppeteer from "puppeteer";
-import { withErrorHandler } from "@/middleware/errorHanlder";
+import { withErrorHandler } from "@/middleware/errorHandler";
 import { isValidUrl } from "@/helpers/validation";
 
 

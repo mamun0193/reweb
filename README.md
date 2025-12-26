@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# reweb
 
-## Getting Started
+A Next.js 14 (app router, TypeScript) project scaffold for a small analysis app.
 
-First, run the development server:
+## Overview
+
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Purpose:** Lightweight app with an analysis API route and simple UI pages (Home, Result).
+
+## Quick Start
+
+Install dependencies and run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` — Run the development server
+- `npm run build` — Build for production
+- `npm run start` — Start the production server (after build)
 
-## Learn More
+Check `package.json` for other scripts your project may define.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure (key files)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `app/` — Next.js app router pages and layout
+  - `app/page.tsx` — Root page
+  - `app/layout.tsx` — App layout
+  - `app/api/analyze/route.ts` — API route for analysis
+  - `app/Home/page.tsx` — Home page
+  - `app/Result/` — Result page
+- `components/` — React UI components
+- `helpers/validation.ts` — Input validation helpers
+- `lib/` — Project libraries and utilities
+- `middleware/` — Middleware (if used)
+- `errorHanlder.ts` — Global error helper (note: filename has a typo in the repo)
+- `public/` — Static assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes & Recommendations
 
-## Deploy on Vercel
+- The repo currently contains `errorHanlder.ts` (typo). Consider renaming to `errorHandler.ts` and updating imports.
+- Keep API routes in `app/api/` to follow Next.js conventions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project can be deployed on Vercel for seamless Next.js support. Alternatively, build and run on any Node.js host that supports Next.js.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Open a PR with a clear description of changes
+
+## Contact
+
+For questions or help, open an issue or contact the project owner.
