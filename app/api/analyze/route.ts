@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import { NextRequest } from "next/server";
 import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
@@ -31,12 +33,11 @@ const handler = async (req: NextRequest) => {
         // Launch Puppeteer and navigate to the URL
 
         browser = await puppeteer.launch({
-            args: isDev ? [] : chromium.args,
-            executablePath: isDev
-                ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-                : await chromium.executablePath(),
-            headless: true,
-        });
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+});
 
         const page = await browser.newPage();
 
