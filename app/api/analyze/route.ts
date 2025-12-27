@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import { withErrorHandler } from "@/middleware/errorHandler";
 import { isValidUrl, normalizeUrl } from "@/helpers/validation";
 import { generateSuggestions } from "@/lib/suggestions";
@@ -26,11 +27,17 @@ const handler = async (req: NextRequest) => {
 
     let browser;
     try {
+        const isDev = process.env.NODE_ENV !== "production";
         // Launch Puppeteer and navigate to the URL
+
         browser = await puppeteer.launch({
+            args: isDev ? [] : chromium.args,
+            executablePath: isDev
+                ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+                : await chromium.executablePath(),
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
+
         const page = await browser.newPage();
 
 
@@ -147,7 +154,7 @@ const handler = async (req: NextRequest) => {
         } catch (err) {
             response.suggestions = [];
             console.log(err);
-            
+
         }
 
         await browser.close();
